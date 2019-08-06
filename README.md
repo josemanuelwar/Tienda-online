@@ -1,2 +1,2 @@
-# Tiendad-online
+# Tienda-online
 proyecto escolar
