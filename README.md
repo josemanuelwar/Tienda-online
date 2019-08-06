@@ -1,2 +1,2 @@
 # Tiendad-online
-protecto escolar
+proyecto escolar
