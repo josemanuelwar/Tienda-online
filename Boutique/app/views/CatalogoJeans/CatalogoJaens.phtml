@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+<!--Titulo de la pagina -->
+  <div class="header">
+  <img src="public/img/logo.png">
+    <h2>Catalogo de Jeans</h2>
+  </div>
+  <br>
+<!--menu-->
+<nav>
+  <ul>
+    <li>
+      <a href="http://localhost/Boutique/">Inicio</a>
+    </li>
+    <?php 
+if ($this->session->get('Login') == Null) {
+ ?>
+    <li>
+
+      <a href="http://localhost/Boutique/Login" > iniciar Session </a>
+    </li>
+    <li>
+      <a class="navbar-brand" href="http://localhost/Boutique/Registro" >Registro de usuariao </a>
+
+    </li>
+    <?php } ?>
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn">Primavera otoño</a>
+      <div class="dropdown-content">
+        
+        <a  href="http://localhost/Boutique/CatalogoVestido" style="color: black;" >Vestido</a>
+       <a  href="http://localhost/Boutique/Catalogoblusa" style="color: black;" >Bulsas</a>
+        <a  href="http://localhost/Boutique/CatalogoJeans" style="color: black;" >Jeans</a>
+        <a  href="http://localhost/Boutique/CatalogoFalda" style="color: black;" >Faldas</a>
+      </div>
+    </li>
+     <?php 
+
+    if($this->session->has('Login'))
+     
+      {
+
+     ?>
+     <li class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn">
+          <?php echo  $this->session->get('Login');?>
+        </a>
+        <div class="dropdown-content">
+          <a class="dropdown-item" style="color: black;" <?php echo $this->tag->linkTo('Boutique/Index/Salir','Salir');?> </a>
+        </div>
+     </li>
+      <button class="car" onclick="comprar();">
+        <img class="carritoimg" src="public/img/iconos/compras.jpeg" >
+      </button>
+      <?php } ?>
+      
+
+      <input type="search" name="busqueda" placeholder="search the site"> <button class="car" ><img src="public/img/iconos/buscar.png " height="30px" width="30px"></button>
+  </ul>
+</nav>
+<br>
+
+<!--fooder de la pagina-->
+<div class="container">
+       <hr>
+    <footer>
+
+        <p class="tex">&copy; Company 2017 Boutique la Paz</p>
+        <img class="graf" src="public/img/face.png"> Facebook Boutique la Paz
+        <img class="graf" src="public/img/inst.png"> Instagram Boutique la Paz
+        <img class="graf" src="public/img/tiwe.png"> Tiwetter Boutique la Paz
+        
+    </footer>
+</div>
+
+</body>
+</html>

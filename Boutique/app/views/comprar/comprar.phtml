@@ -1,0 +1,196 @@
+<!--Titulo de la pagina -->
+  <div class="header">
+  <img src="public/img/logo.png">
+  </div>
+  <br>
+  <!--menu-->
+<nav>
+  <ul>
+    <li>
+      <a href="http://localhost/Boutique/">Inicio</a>
+    </li>
+    <?php 
+if ($this->session->get('Login') == Null) {
+ ?>
+    <li>
+
+      <a href="http://localhost/Boutique/Login" > iniciar Session </a>
+    </li>
+    <li>
+      <a class="navbar-brand" href="http://localhost/Boutique/Registro" >Registro de usuariao </a>
+
+    </li>
+    <?php } ?>
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn">Primavera otoño</a>
+      <div class="dropdown-content">
+        
+        <a  href="http://localhost/Boutique/CatalogoVestido" style="color: black;" >Vestido</a>
+       <a  href="http://localhost/Boutique/Catalogoblusa" style="color: black;" >Bulsas</a>
+        <a  href="http://localhost/Boutique/CatalogoJeans" style="color: black;" >Jeans</a>
+        <a  href="http://localhost/Boutique/CatalogoFalda" style="color: black;" >Faldas</a>
+      </div>
+    </li>
+     <?php 
+
+    if($this->session->has('Login'))
+     
+      {
+
+     ?>
+     <li class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn">
+          <?php echo  $this->session->get('Login');?>
+        </a>
+        <div class="dropdown-content">
+          <a class="dropdown-item" style="color: black;" <?php echo $this->tag->linkTo('Boutique/Index/Salir','Salir');?> </a>
+        </div>
+     </li>
+      <button onclick="comprar();">
+        <img src="public/img/iconos/compras.jpeg" height="30px" width="30px"">
+      </button>
+      <?php } ?>
+      
+
+      <input type="search" name="busqueda" placeholder="search the site"> <button  ><img src="public/img/iconos/buscar.png " height="30px" width="30px"></button>
+  </ul>
+</nav>
+  <br>
+  <center>
+  <h2>Tabla de productos comprados</h2>
+  </center>
+  <hr>
+  <table id="customers">
+  	<tr>
+  		<th>id</th>
+      <th>Descripcion</th>
+  		<th>Cantidad</th>
+  		<th>Fecha</th>
+  		<th>Tipo</th>
+  		<th>Precio</th>
+      <th>Eliminar producto</th>
+  	</tr>
+    <?php foreach ($list as $compras) {
+      if($compras['pagado'] != 1){
+    ?>
+    <tr>
+      <td><?php echo $compras['id_producto'];  ?>
+        <input id="id_producto" style="display: none;"value=
+          <?php echo $compras['id_producto']; ?>>
+      </td>
+      <td> <?php echo $compras['Decripcion'];  ?> </td>
+      
+       <td><?php echo $compras['cantidad'];  ?>
+         <input id="cantidad" style="display: none;"value=
+          <?php echo $compras['cantidad']; ?>>
+       </td>
+
+         <td><?php echo $compras['fecha'];  ?></td>
+          <td><?php echo $compras['Tipo'];  ?>
+           <input id="Tipo" style="display: none;"value=
+          <?php echo $compras['Tipo']; ?>>
+            
+          </td>
+
+      
+
+          <td><?php echo $compras['precio']; ?>
+             <input id="precio" style="display: none;"value=
+          <?php echo $compras['precio']; ?>>
+          </td>
+          <td><a class="elim" href="comprar/Eliminarcompra/<?php echo $compras['id_producto'];?>/<?php echo $compras['Tipo'];?>/">Eliminar</a></td>
+
+           
+         
+          
+    </tr>
+  <?php } 
+    }?>
+  </table>
+
+  <table id="customers">
+    <tr>
+    <th>
+    Total de pago
+  </th>
+  <th>
+      <?php echo "$".$Total; ?>
+    </th>
+    <th>
+      <center>
+      <button id="myBtn" class="pagar">Pagar</button>
+      </center>
+    </th>
+  </tr> 
+  </table>
+
+  <!--modal--->
+  <div id="myModal" class="modal">
+    
+    <!--contenido del modal-->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+        <!--titulo de la pagina-->
+        <div class="header">
+        <img src="public/img/logo.png" height="50%" width="50%">
+        </div>
+        <br>
+        <!--inicio del if-->
+        <div class="contendor" style="background-image: url('public/img/iconos/fondo.jpg');height:50vh;">
+          
+          <div class="cont">
+          
+        <center><input id="nombre" style="display: none;"value=
+          <?php echo $compras['id_cliente']; ?>> </center>
+
+        <!--formulario de pago-->
+        <form>
+          <label>Total a pagar</label>
+          <input style="margin-left:  84px;" id="totalpagar" type="float" size="20" name="total" placeholder="<?php echo "$".$Total; ?>" value="<?php echo "$".$Total; ?>" disabled>
+          <br>
+          <label>Nro.de Tarjeta de Credito:</label>
+          <input id="numtarjeta" size="20" name="num" pattern="[0-9]{13,16}" maxlength="16">
+          
+          <br>
+          <label>cvc</label>
+          <input size="20" style="margin-left:  145px;" name="cvc" maxlength="4" id="cvc">
+          <br>
+        </form>
+        <button onclick="archivo();">Pagado</button>
+        
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+  // Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+</script>

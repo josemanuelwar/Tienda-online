@@ -1,0 +1,84 @@
+<meta charset="utf-8">
+
+<?php 
+    $this->assets->outputCss(); 
+    $this->assets->outputJs();
+   ?>
+<body class="fondo">
+<!-- menu -->
+
+<nav>
+  <ul>
+    <li>
+      <a href="http://localhost/Boutique/">Inicio</a>
+    </li>
+    <?php 
+if ($this->session->get('Login') == Null) {
+ ?>
+    <li>
+
+      <a href="http://localhost/Boutique/Login" > iniciar Session </a>
+    </li>
+    <li>
+      <a class="navbar-brand" href="http://localhost/Boutique/Registro" >Registro de usuariao </a>
+
+    </li>
+    <?php } ?>
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn">Primavera otoño</a>
+      <div class="dropdown-content">
+        
+        <a  href="#" style="color: black;" >Vestido</a>
+        <a  href="#" style="color: black;" >Bulsas</a>
+        <a  href="#" style="color: black;" >Jeans</a>
+        <a  href="#" style="color: black;" >Faldas</a>
+      </div>
+    </li>
+     <?php 
+
+    if($this->session->has('Login'))
+     
+      {
+
+     ?>
+     <li class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn">
+          <?php echo  $this->session->get('Login');?>
+        </a>
+        <div class="dropdown-content">
+          <a class="dropdown-item" style="color: black;" <?php echo $this->tag->linkTo('Boutique/Index/Salir','Salir');?> </a>
+        </div>
+     </li>
+      <?php } ?>
+  </ul>
+</nav>
+  <!--Titulo de la pagina -->
+  <br>
+  <div class="header">
+    <h1>Butique la Paz</h1>
+  </div>
+  <br>
+<!------->
+<center>
+<h2>Login de usuarios</h2>
+</center>
+<!-- Formulario-->
+<?php echo $this->tag->form("Boutique/Login/login"); ?>
+      <label for="Correo">Correo:</label>
+      <?php echo $this->tag->textField("Correo");?>
+
+      <label for="Passwor">Contraseña:</label>
+    <?php echo $this->tag->PasswordField("Passwor");?>
+<?php echo $this->tag->submitButton("Iniciar");?>
+
+<!--fooder de la pagina-->
+<div class="container">
+       <hr>
+    <footer>
+
+        <p class="tex">&copy; Company 2017 Boutique la Paz</p>
+        <img class="graf" src="public/img/face.png"> Facebook Boutique la Paz
+        <img class="graf" src="public/img/inst.png"> Instagram Boutique la Paz
+        <img class="graf" src="public/img/tiwe.png"> Tiwetter Boutique la Paz
+    </footer>
+</div>

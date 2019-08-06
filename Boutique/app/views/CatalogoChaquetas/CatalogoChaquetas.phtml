@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<!-- menu -->
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <a class="navbar-brand" <?php echo $this->tag->linkTo('Boutique','Home'); ?> 
+</a>
+<?php 
+if ($this->session->get('Login') == Null) {
+ ?>
+<a class="navbar-brand" <?php echo $this->tag->linkTo('Boutique/Login','Inicio secion');?> </a>
+
+<a class="navbar-brand" <?php echo $this->tag->linkTo('Boutique/Registro','Registro de Usuario'); ?> </a>
+<?php } ?>
+<!-- Links -->
+  <ul class="navbar-nav">
+      <!-- Dropdown -->
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        Primavera - verano 
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" <?php echo $this->tag->linkTo('Boutique/CatalogoVestido','Vestidos');?></a>
+        <a class="dropdown-item" <?php echo $this->tag->linkTo('Boutique/Catalogoblusa','Bulsas');?> </a>
+        <a class="dropdown-item" <?php echo $this->tag->linkTo('Boutique/CatalogoJeans','Jeans');?></a>
+        <a class="dropdown-item" <?php echo $this->tag->linkTo('Boutique/CatalogoChaquetas','Chaquetas');?></a>
+        <a class="dropdown-item" <?php echo $this->tag->linkTo('Boutique/CatalogoFalda','Faldas');?></a>
+      </div>
+    </li>
+  </ul>
+   <!-- Links -->
+  <ul class="navbar-nav">
+      <!-- Dropdown -->
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        Otoño - Invierno
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Gorras</a>
+        <a class="dropdown-item" href="#">Botas</a>
+        <a class="dropdown-item" href="#">Bufandas</a>
+        <a class="dropdown-item" href="#">Chamaras</a>
+        <a class="dropdown-item" href="#">Jeans</a>
+        <a class="dropdown-item" href="#">Faldas</a>
+        <a class="dropdown-item" href="#">Sacos</a>
+      </div>
+    </li>
+    <?php 
+
+    if($this->session->has('Login'))
+     
+      {
+
+     ?>
+      
+  <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        <?php echo  $this->session->get('Login');?> 
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" <?php echo $this->tag->linkTo('Boutique/Index/Salir','Salir');?> </a>
+      </div>
+    </li>
+  <?php } ?>
+  </ul>
+</nav>
+<br>
+<!--Titulo de la pagina -->
+  <div class="jumbotron text-center">
+    <h1>Butique la Paz</h1>
+    <h2>Catalogo de chaquetas</h2>
+  </div>
+  <br>
+<!--fooder de la pagina-->
+<div class="container">
+       <hr>
+    <footer>
+
+        <p class="tex">&copy; Company 2017 Boutique la Paz</p>
+        <img class="graf" src="public/img/face.png"> Facebook Boutique la Paz
+        <img class="graf" src="public/img/inst.png"> Instagram Boutique la Paz
+        <img class="graf" src="public/img/tiwe.png"> Tiwetter Boutique la Paz
+        <input type="search" name="busqueda" placeholder="search the site"> <button class="buton" > buqueda</button>
+    </footer>
+
+</body>
+</html>
+
+<style type="text/css">
+  .tex{
+    text-align: center;
+  }
+  .graf{
+    vertical-align:left;
+    height: 50px;
+    width: 50px;
+
+  }
+  .buton
+  {
+height: 50px;
+width: 100px;
+  }
+</style>

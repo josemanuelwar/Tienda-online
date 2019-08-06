@@ -1,0 +1,128 @@
+<meta charset="utf-8">
+
+<?php 
+    $this->assets->outputCss(); 
+    $this->assets->outputJs();
+   ?>
+<body class="fondo">
+<!-- menu -->
+<nav>
+  <ul>
+    <li>
+      <a href="http://localhost/Boutique/">Inicio</a>
+    </li>
+    <?php 
+if ($this->session->get('Login') == Null) {
+ ?>
+    <li>
+
+      <a href="http://localhost/Boutique/Login" > iniciar Session </a>
+    </li>
+    <li>
+      <a class="navbar-brand" href="http://localhost/Boutique/Registro" >Registro de usuariao </a>
+
+    </li>
+    <?php } ?>
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn">Primavera otoño</a>
+      <div class="dropdown-content">
+        
+        <a  href="#" style="color: black;" >Vestido</a>
+        <a  href="#" style="color: black;" >Bulsas</a>
+        <a  href="#" style="color: black;" >Jeans</a>
+        <a  href="#" style="color: black;" >Faldas</a>
+      </div>
+    </li>
+     <?php 
+
+    if($this->session->has('Login'))
+     
+      {
+
+     ?>
+     <li class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn">
+          <?php echo  $this->session->get('Login');?>
+        </a>
+        <div class="dropdown-content">
+          <a class="dropdown-item" style="color: black;" <?php echo $this->tag->linkTo('Boutique/Index/Salir','Salir');?> </a>
+        </div>
+     </li>
+      <?php } ?>
+  </ul>
+</nav>
+
+<center>
+<h2>Registro de usuarios</h2>
+</center>
+<div class="successMessage"> 
+
+</div>
+<!-- Formulario-->
+<div class="row">
+
+<div class="column">
+<?php echo $this->tag->form("Boutique/Registro/registro"); ?>  
+
+	
+	
+    <div class="entrada">
+    <label for="nombre" class="labe">Nombre(s):</label><br>
+    <?php echo $this->tag->textField("nombre"); ?>
+    </div>
+	
+	   <div class="entrada">
+      <label for="apellido" class="labe">Apellido(s):</label><br>
+      <?php echo $this->tag->textField("apellido"); ?>
+    </div>
+
+	   <div class="entrada">
+      <label for="correo" class="labe">Correo electronico:</label><br>
+      <?php echo $this->tag->textField("correo"); ?>
+    </div>
+
+    <div class="entrada">
+      <label for="Passwor" class="labe">Contraseña:</label><br>
+    <?php echo $this->tag->PasswordField("Passwor"); ?>
+    </div>
+</div>
+
+<div class="column">
+      <div class="entrada">
+    <label for="Passwor1" class="labe">Reperit Contraseña:</label><br>
+    <?php echo $this->tag->PasswordField("Passwor1"); ?>
+    </div>
+    <div class="entrada">
+    <label for="direcion" class="labe">Direccion:</label><br>
+    <?php echo $this->tag->textField("direcion"); ?>
+    </div>
+    <div class="entrada">
+    <label for="tel" class="labe">Telefono:</label><br>
+    <?php echo $this->tag->textField("tel"); ?>
+    </div>
+    <p>
+       <a class="buton"> <?php echo $this->tag->submitButton("Registrar"); ?></a>
+    </p>
+ </div>   
+  <div class="column">
+      <img src="public/img/thYI2210CQ.jpg" height="100%" width="100%">
+  </div>
+ 
+  </form>
+</div>
+    <!--fooder de la pagina-->
+
+       <hr>
+    <footer>
+
+        <p class="tex">&copy; Company 2017 Boutique la Paz</p>
+        <a href="https://es-la.facebook.com">
+        <img class="graf" src="public/img/face.png">
+      </a> Facebook Boutique la Paz
+        <img class="graf" src="public/img/inst.png"> Instagram Boutique la Paz
+        <img class="graf" src="public/img/tiwe.png"> Tiwetter Boutique la Paz
+    </footer>
+
+</body>
+
+

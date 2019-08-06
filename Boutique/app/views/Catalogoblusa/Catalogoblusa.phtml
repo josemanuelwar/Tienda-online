@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<!--Titulo de la pagina -->
+  <div class="header">
+  <img src="public/img/logo.png">
+    <h2>Catalogo de Blusa</h2>
+  </div>
+  <br>
+<!--menu-->
+<nav>
+  <ul>
+    <li>
+      <a href="http://localhost/Boutique/">Inicio</a>
+    </li>
+    <?php 
+if ($this->session->get('Login') == Null) {
+ ?>
+    <li>
+
+      <a href="http://localhost/Boutique/Login" > iniciar Session </a>
+    </li>
+    <li>
+      <a class="navbar-brand" href="http://localhost/Boutique/Registro" >Registro de usuariao </a>
+
+    </li>
+    <?php } ?>
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn">Primavera otoño</a>
+      <div class="dropdown-content">
+        
+        <a  href="http://localhost/Boutique/CatalogoVestido" style="color: black;" >Vestido</a>
+       <a  href="http://localhost/Boutique/Catalogoblusa" style="color: black;" >Bulsas</a>
+        
+        <a  href="http://localhost/Boutique/CatalogoFalda" style="color: black;" >Faldas</a>
+      </div>
+    </li>
+     <?php 
+
+    if($this->session->has('Login'))
+     
+      {
+
+     ?>
+     <li class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn">
+          <?php echo  $this->session->get('Login');?>
+        </a>
+        <div class="dropdown-content">
+          <a class="dropdown-item" style="color: black;" <?php echo $this->tag->linkTo('Boutique/Index/Salir','Salir');?> </a>
+        </div>
+     </li>
+      <button class="car" onclick="comprar();">
+        <img class="carritoimg" src="public/img/iconos/compras.jpeg" >
+      </button>
+      <?php } ?>
+      
+
+     
+  </ul>
+</nav>
+<br>
+
+<!--carrusel-->
+<div class="slideshow-container">
+  <center>
+  <div class="mySlides fade">
+    <div class="numbertext">1/3</div>
+    <img src="public/img/Blusas/blusa13.jpg" height="50%" width="50%">
+    <div class="text">cation tex</div>
+  </div>
+
+    <div class="mySlides fade">
+      <div class="numbertext">2/3</div>
+      <img src="public/img/Blusas/blusa2.jpg" height="50%" width="50%">
+      <div class="text">cation tex</div>
+    </div>
+    
+    <div class="mySlides fade">
+      <div class="numbertext">3/3</div>
+      <img src="public/img/Blusas/blusa4.jpg" height="50%" width="50%">
+      <div class="text">cation tex</div>
+    </div>
+  </center>
+<a class="prev" onclick="plusSlides(-1)">&#10094</a>
+<a class="next" onclick="plusSlides(1)">&#10095</a>
+
+</div>
+  <br>
+
+
+<!-- contenido de la pagina -->
+<br>
+<div class="row">
+<?php 
+foreach ($blus as $vest) {
+?>
+
+<div class="column">
+<a href="<?php echo $vest["id_blus"] ?>">
+<div id="marca<?php echo $vest['id_blus'] ?>">
+      
+<h3 class="titulo">
+  <?php echo $vest["Marca"] ?>
+    
+</h3>
+
+<center>
+<img class="cat" src=<?php echo  $vest["Rutaimg"];?>>
+</center>
+<p class="Descripcion"><?php echo $vest["Descripcion"];?>
+  <br>
+  $<?php echo" ".$vest["Precio"]; ?>
+</p>
+</a>
+</div>
+<?php 
+
+    if($this->session->has('Login'))
+     
+      {
+?>
+<button class="car" onclick="myblus(<?php echo $vest['id_blus'] ?>,<?php echo $vest["Precio"];?>);"><img src="public/img/iconos/carrito.png " height="30px" width="30px"></button>
+</div>
+<br>
+<?php
+ } else{
+?>
+<button class="car" onclick="com();"><img src="public/img/iconos/carrito.png " height="30px" width="30px"></button>
+</div>
+<br>
+<?php
+  }
+}  
+?>
+
+</div>
+
+
+<!--fooder de la pagina-->
+<div class="container">
+       <hr>
+    <footer>
+
+        <p class="tex">&copy; Company 2017 Boutique la Paz</p>
+        <img class="graf" src="public/img/face.png"> Facebook Boutique la Paz
+        <img class="graf" src="public/img/inst.png"> Instagram Boutique la Paz
+        <img class="graf" src="public/img/tiwe.png"> Tiwetter Boutique la Paz
+        
+    </footer>
+</div>
+
+</body>
+</html>
+<script type="text/javascript">
+  var slideindex=0;
+  showSlides();
+  function showSlides()
+  {
+      var i;
+      var slides=document.getElementsByClassName("mySlides");
+      
+      for ( i = 0; i < slides.length; i++ ) {
+        slides[i].style.display="none";
+       }
+
+       slideindex++;
+       if (slideindex > slides.length) {slideindex=1}
+        slides[slideindex-1].style.display="block";
+      setTimeout(showSlides,2000);
+  }
+</script>
